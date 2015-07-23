@@ -7,10 +7,11 @@ class Frame1(Frame):
     def __init__(self, parent):
         super().__init__()
         self.parent = parent
-        but = Button(parent, text="New Window", command=self.newWindow)
-        but.place(relx=0.25, rely=0.5)
+        but = Button(parent, text="New Window",
+                     command= lambda: self.newWindow(parent))
+        but.pack(expand=True)
 
-    def newWindow(self):
+    def newWindow(self, parent):
         random.seed()
         colorInt = random.randint(0,2)
         if colorInt == 0:
@@ -24,11 +25,16 @@ class Frame1(Frame):
         top.minsize(width=winWidth, height=winHeight)
         top.title("New!")
         top.configure(background=bgColor)
-        but = Button(top, text="New Window", command=self.newWindow)
-        but.place(relx=0.25, rely=0.5)
         label = Label(top, text=("This window has a " + str(bgColor) +
                                  " background!"))
         label.pack(side="top")
+        but = Button(top, text="New Window",
+                     command= lambda: self.newWindow(parent))
+        but.pack(expand=True)
+        but2 = Button(top, text="Close All", command=parent.destroy)
+        but2.pack(side="bottom")
+        but3 = Button(top, text="Close Current", command=top.destroy)
+        but3.pack(side="bottom")
         #square = Square(top)
 
 class Square():
