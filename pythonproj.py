@@ -10,6 +10,9 @@ class Frame1(Frame):
         but = Button(parent, text="New Window",
                      command= lambda: self.newWindow(parent))
         but.pack(expand=True)
+        but2 = Button(parent, text="Exit",
+                     command=parent.destroy)
+        but2.pack(side="bottom")
 
     def newWindow(self, parent):
         random.seed()
