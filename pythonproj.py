@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-from tkinter import Tk, Frame, Button, Toplevel, Canvas
+from tkinter import Tk, Frame, Button, Label, Toplevel, Canvas
 import random
 
 class Frame1(Frame):
@@ -20,10 +20,15 @@ class Frame1(Frame):
         else:
             bgColor = "blue"
         top = Toplevel()
+        winWidth, winHeight = 200, 200
+        top.minsize(width=winWidth, height=winHeight)
         top.title("New!")
         top.configure(background=bgColor)
         but = Button(top, text="New Window", command=self.newWindow)
         but.place(relx=0.25, rely=0.5)
+        label = Label(top, text=("This window has a " + str(bgColor) +
+                                 " background!"))
+        label.pack(side="top")
         #square = Square(top)
 
 class Square():
